@@ -1,0 +1,65 @@
+﻿@model  List<mvcCrudDbFirstLecture1.Context.tbl_Student>
+@{
+    ViewBag.Title = "Product";
+}
+
+<h1>Product List</h1>
+
+<br />
+<p>
+    @Html.ActionLink("Add new Product", "Student")
+</p>
+
+@using (Html.BeginForm("ProductList", "Student", FormMethod.Get))
+{
+
+
+
+
+    @Html.TextBox("search")
+    <input type="submit" value="Search" />
+
+   
+
+
+}
+
+<table class="table table-hover">
+
+
+    <br />
+
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Purches Price</th>
+        <th>selling Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.name</td>
+            <td>@item.discription</td>
+            <td>@item.purches_price</td>
+            <td>@item.selling_price</td>
+            <td>@item.quantity</td>
+            <td>
+                <a href="@Url.Action("Student",new {item.id,item.name,item.discription,item.purches_price,item.selling_price,item.quantity})" class="btn btn-success">Edit</a>
+                <a href="@Url.Action("Delete",new {item.id})" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+
+
+
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</div>
+
+
